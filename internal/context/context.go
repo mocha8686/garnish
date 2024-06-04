@@ -56,10 +56,10 @@ func (c *Context) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			c.textInput.SetValue("")
 
 			res, err := c.handleCommand(input)
-			if err == errEmptyCommand {
+			if errors.Is(err, errEmptyCommand) {
 				c.appendHistory("", "")
 				return c, nil
-			} else if err == errUnknownCommand || errors.Unwrap(err) == errUnknownCommand {
+			} else if errors.Is(err, errUnknownCommand) {
 				c.appendHistory(input, color.RedString(err.Error()))
 				return c, nil
 			} else if err != nil {
