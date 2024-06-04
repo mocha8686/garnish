@@ -11,7 +11,9 @@ import (
 	color "github.com/fatih/color"
 )
 
-var prompt = color.BlueString("garnish") + "> "
+const name = "garnish"
+
+var prompt = color.BlueString(name) + "> "
 
 var (
 	errEmptyCommand   = errors.New("Empty command")
